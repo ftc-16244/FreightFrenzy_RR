@@ -1,5 +1,4 @@
-package org.firstinspires.ftc.teamcode.drive;
-
+package org.firstinspires.ftc.teamcode.Subsystems;
 
 import androidx.annotation.NonNull;
 
@@ -28,6 +27,7 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
+import org.firstinspires.ftc.teamcode.Subsystems.FF_TrackingWheelLocalizer;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
@@ -37,23 +37,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.firstinspires.ftc.teamcode.drive.DriveConstants.MAX_ACCEL;
-import static org.firstinspires.ftc.teamcode.drive.DriveConstants.MAX_ANG_ACCEL;
-import static org.firstinspires.ftc.teamcode.drive.DriveConstants.MAX_ANG_VEL;
-import static org.firstinspires.ftc.teamcode.drive.DriveConstants.MAX_VEL;
-import static org.firstinspires.ftc.teamcode.drive.DriveConstants.MOTOR_VELO_PID;
-import static org.firstinspires.ftc.teamcode.drive.DriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.drive.DriveConstants.TRACK_WIDTH;
-import static org.firstinspires.ftc.teamcode.drive.DriveConstants.encoderTicksToInches;
-import static org.firstinspires.ftc.teamcode.drive.DriveConstants.kA;
-import static org.firstinspires.ftc.teamcode.drive.DriveConstants.kStatic;
-import static org.firstinspires.ftc.teamcode.drive.DriveConstants.kV;
+import static org.firstinspires.ftc.teamcode.Constants.FF_DriveConstants.MAX_ACCEL; // switch away from default constants
+import static org.firstinspires.ftc.teamcode.Constants.FF_DriveConstants.MAX_ANG_ACCEL;
+import static org.firstinspires.ftc.teamcode.Constants.FF_DriveConstants.MAX_ANG_VEL;
+import static org.firstinspires.ftc.teamcode.Constants.FF_DriveConstants.MAX_VEL;
+import static org.firstinspires.ftc.teamcode.Constants.FF_DriveConstants.MOTOR_VELO_PID;
+import static org.firstinspires.ftc.teamcode.Constants.FF_DriveConstants.RUN_USING_ENCODER;
+import static org.firstinspires.ftc.teamcode.Constants.FF_DriveConstants.TRACK_WIDTH;
+import static org.firstinspires.ftc.teamcode.Constants.FF_DriveConstants.encoderTicksToInches;
+import static org.firstinspires.ftc.teamcode.Constants.FF_DriveConstants.kA;
+import static org.firstinspires.ftc.teamcode.Constants.FF_DriveConstants.kStatic;
+import static org.firstinspires.ftc.teamcode.Constants.FF_DriveConstants.kV;
 
 /*
  * Simple mecanum drive hardware implementation for REV hardware.
  */
 @Config
-public class SampleMecanumDrive extends MecanumDrive {
+public class DrivetrainRR extends MecanumDrive {
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(2, 0, 0.25);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(7, 0, 0.25);
 
@@ -76,7 +76,7 @@ public class SampleMecanumDrive extends MecanumDrive {
     private BNO055IMU imu;
     private VoltageSensor batteryVoltageSensor;
 
-    public SampleMecanumDrive(HardwareMap hardwareMap) {
+    public DrivetrainRR(HardwareMap hardwareMap) {
         super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
 
         follower = new HolonomicPIDVAFollower(TRANSLATIONAL_PID, TRANSLATIONAL_PID, HEADING_PID,
@@ -131,7 +131,7 @@ public class SampleMecanumDrive extends MecanumDrive {
 
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
-        setLocalizer(new StandardTrackingWheelLocalizer(hardwareMap)); // changes localizer to tracking wheels
+        setLocalizer(new FF_TrackingWheelLocalizer(hardwareMap)); // changes localizer to tracking  wheels and uses Freight Frenzy config
 
         trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);
     }

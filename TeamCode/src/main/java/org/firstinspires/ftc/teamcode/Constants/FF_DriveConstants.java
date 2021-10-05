@@ -1,5 +1,4 @@
-package org.firstinspires.ftc.teamcode.drive;
-
+package org.firstinspires.ftc.teamcode.Constants;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
@@ -16,7 +15,7 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
  * and op modes themselves.
  */
 @Config
-public class DriveConstants {
+public class FF_DriveConstants {
 
     /*
      * These are motor constants that should be listed online for your motors.

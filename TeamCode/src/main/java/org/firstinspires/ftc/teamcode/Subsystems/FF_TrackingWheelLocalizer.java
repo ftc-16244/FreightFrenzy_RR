@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.drive;
+package org.firstinspires.ftc.teamcode.Subsystems;
 
 import androidx.annotation.NonNull;
 
@@ -7,6 +7,7 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.localization.ThreeTrackingWheelLocalizer;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
 import org.firstinspires.ftc.teamcode.util.Encoder;
 
 import java.util.Arrays;
@@ -27,7 +28,7 @@ import java.util.List;
  */
 
 @Config
-public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer {
+public class FF_TrackingWheelLocalizer extends ThreeTrackingWheelLocalizer {
     public static double TICKS_PER_REV = 8192; //REV Through bore
     public static double WHEEL_RADIUS = 30.0/25.4; // 60mm REV omni tracking Wheel
     public static double GEAR_RATIO = 1; // output (wheel) speed / input (encoder) speed
@@ -40,17 +41,14 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
 
     private Encoder leftEncoder, rightEncoder, frontEncoder;
 
-    public StandardTrackingWheelLocalizer(HardwareMap hardwareMap) {
+    public FF_TrackingWheelLocalizer(HardwareMap hardwareMap) {
         super(Arrays.asList(
                 new Pose2d(0, LATERAL_DISTANCE / 2, 0), // left
                 new Pose2d(0, -LATERAL_DISTANCE / 2, 0), // right
                 new Pose2d(FORWARD_OFFSET, 0, Math.toRadians(90)) // front
         ));
 
-        //leftEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "leftEncoder"));
-        //rightEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "rightEncoder"));
-        //frontEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "frontEncoder"));
-        // Plugging these into the motor ports for LF, RF, RR
+
         leftEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "Left_front"));
         rightEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "Right_front"));
         frontEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "Right_rear"));
