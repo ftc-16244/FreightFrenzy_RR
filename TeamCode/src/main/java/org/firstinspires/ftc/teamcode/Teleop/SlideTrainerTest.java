@@ -36,7 +36,6 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 public class SlideTrainerTest<slideTrainerState> extends LinearOpMode {
 
     FtcDashboard dashboard;
-
     Slide_Trainer slideTrainer = new Slide_Trainer(this);
     SlideTrainerState slideTrainerState = SlideTrainerState.UNKNOWN;
 
